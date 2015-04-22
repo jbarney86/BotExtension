@@ -247,7 +247,7 @@ log("lost code in !blackjack", log.info);
                     blackJackStand(author);
                     return;
                 } else if(getSumOfHand(savedGame[2]) > 21) {
-                    log(output + "which is a BUST, please see !addiction to deal with your loss", log.visible);
+                    log(output + "which is a BUST", log.visible);
                     API.moderateMoveDJ(getId(author), getPosition(author) + 1 + parseInt(blackJackUsers[game][1]));
                     deleteBlackJackGame(author);// game over, remove from blackJackUsers array
                     return;
@@ -271,11 +271,11 @@ log("lost code in !blackjack", log.info);
                 deleteBlackJackGame(author, true);
                 return;
             } else if(isPlaying(author)) {
-                log("@" + author + ", you're already DJing, you have no slots to gamble. See !addiction for more details.", log.visible);
+                log("@" + author + ", you're already DJing, you have no slots to gamble.", log.visible);
                 deleteBlackJackGame(author, true);
                 return;
             } else if(getPosition(author) == (API.getWaitList().length - 1) || getPosition(author) == -1 || getPosition(author) == 0) {
-                log("@" + author + ", you can't gamble when you have nothing to lose! See !addiction for more details.", log.visible);
+                log("@" + author + ", you can't gamble when you have nothing to lose!", log.visible);
                 deleteBlackJackGame(author, true);
                 return;
             } else if(checkBlackJackWager(author, args[1]) != args[1]) {// check if they bet excessively
