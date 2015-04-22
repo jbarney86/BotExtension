@@ -130,7 +130,4 @@ var commands = [
         log("DAMN SON, WHERE'D YOU FIND THIS??", log.visible);
     }, null, null, false),
 
-    new Command("hot107", function() {
-        log("Hey guys, help Invincibear win a $10 000 grant! http://invincibear.com/hot107_hot_factor/", log.visible);
-    }, null, null, false)
 ];
