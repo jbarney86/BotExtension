@@ -18,10 +18,10 @@ function lottery(author, args) {
         log("@" + author + ", the lottery occurs at the start of each hour for a ten minute window. Type !lottery within 10 minutes after a new hour for a chance to win!", log.visible);
         return;
     } else if(lotteryEntries.indexOf(getId(author)) > -1)  {
-        log("You're already in the lottery @" + author + "! (" + lotteryEntries.length + " entries) See !addiction for help", log.visible);
+        log("You're already in the lottery @" + author + "! (" + lotteryEntries.length + " entries)", log.visible);
         return;
     } else if(getPosition(author) == 0) {
-        log("@" + author + ", you're already the next to DJ, type !addiction for help with your problem.", log.visible);
+        log("@" + author + ", you're already the next to DJ", log.visible);
         return;
     } else if (API.getWaitListPosition(getId(author)) == -1) {
         log("@" + author + ", you must be on the DJ wait list to enter the !lottery", log.visible);
