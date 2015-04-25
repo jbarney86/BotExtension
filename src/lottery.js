@@ -15,7 +15,7 @@ function lottery(author, args) {
     }
 
     if(new Date().getMinutes() >= 10) {
-        log("@" + author + ", the lottery occurs at the start of each hour for a ten minute window. Type !lottery within 10 minutes after a new hour for a chance to win!", log.visible);
+        log("@" + author + ", the lottery occurs at the start of each hour for a five minute window. Type !lottery within 5 minutes after a new hour for a chance to win!", log.visible);
         return;
     } else if(lotteryEntries.indexOf(getId(author)) > -1)  {
         log("You're already in the lottery @" + author + "! (" + lotteryEntries.length + " entries)", log.visible);
@@ -48,10 +48,10 @@ function lotteryUpdate() {
             }
 
             log("@" + getUsername(winner)+ " has won the hourly lottery! The lottery occurs at the start of each hour for a ten minute window. Type !lottery within 10 minutes after a new hour for a chance to win!", log.visible);
-            API.moderateMoveDJ(winner, 1);
+            API.moderateMoveDJ(winner, 2);
         } else {
             if (lotteryEnabled) {
-                log("Not enough contestants, lottery reset. The lottery occurs at the start of each hour for a ten minute window. Type !lottery within 10 minutes after a new hour for a chance to win!", log.visible);
+                log("Not enough contestants, lottery reset. The lottery occurs at the start of each hour for a five minute window. Type !lottery within five minutes after a new hour for a chance to win!", log.visible);
             }
         }
         lotteryEntries = [];
@@ -111,6 +111,6 @@ function lotteryHourly() {// enable or disable the lottery
     lotteryEnabled = (API.getWaitList().length >= 7);// disable lottery unless 7+ DJs queued
 
     if (lotteryEnabled) {
-        log("The lottery is now open, type !lottery for a chance to be bumped to #1 in the DJ wait list!", log.visible);
+        log("The lottery is now open, type !lottery for a chance to be bumped to #2 in the DJ wait list!", log.visible);
     }
 }
