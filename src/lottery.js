@@ -34,7 +34,7 @@ function lottery(author, args) {
 
 
 function lotteryUpdate() {
-    if(new Date().getMinutes() >= 10){
+    if(new Date().getMinutes() >= 5){
         if(lotteryUpdated)
             return;
         lotteryUpdated = true;
