@@ -102,7 +102,7 @@ function blackJackStand(author){// function for dealer to keep hitting if needed
     log("blackJackStand(" + author + ") called, game=" + game, log.info);
 
     if(getSumOfHand(blackJackUsers[game][2]) < getSumOfHand(blackJackUsers[game][3]) && getSumOfHand(blackJackUsers[game][2]) < 21) {
-        log("[!blackjack]@" + author + " your score is lower than @EDMPbot's, you must accept another card with !hit", log.visible);
+        log("[!blackjack]@" + author + " your score is lower than the house's, you must accept another card with !hit", log.visible);
         return;
     } else {
         blackJackUsers[game][7] = true;
@@ -117,7 +117,7 @@ function blackJackStand(author){// function for dealer to keep hitting if needed
     output += blackJackUsers[game][3].join("-") + " totaling " + getSumOfHand(blackJackUsers[game][3]) + "; your final hand: " + blackJackUsers[game][2].join("-") + ", totalling " + getSumOfHand(blackJackUsers[game][2]) + ". ";
 
     if(getSumOfHand(blackJackUsers[game][2]) < getSumOfHand(blackJackUsers[game][3]) && getSumOfHand(blackJackUsers[game][3]) <= 21) {
-        log(output + "@EDMPBot wins, you suck compared to it.", log.visible);
+        log(output + "The house wins, you suck compared to it.", log.visible);
         API.moderateMoveDJ(getId(author), getPosition(author) + 1 + parseInt(blackJackUsers[game][1]));
 //log("deleteBlackJackGame author="+author, log.info);
         deleteBlackJackGame(author);
@@ -239,7 +239,7 @@ log("lost code in !blackjack", log.info);
                 output               = "[!blackjack]@" + author + ", dealt a " + savedGame[4][getCard[1]] + " making your hand: " + savedGame[2].join("-") + ", totaling " + getSumOfHand(savedGame[2]) + " ";
 
                 if(getSumOfHand(savedGame[2]) == 21 && getSumOfHand(savedGame[3]) == 21) {
-                    log(output + "; You got lucky and tied @EDMPBot!", log.visible);
+                    log(output + "; You got lucky and tied the house!", log.visible);
                     deleteBlackJackGame(author, true);
                     return;
                 } else if(getSumOfHand(savedGame[2]) == 21) {
