@@ -109,7 +109,7 @@ var commands = [
         log("[!" + args[0] + "] " + woots[Math.round(Math.random() * (woots.length - 1))], log.visible);
     }),
 
-
+/*
     new Command("smoke", function() {
         log("SMOKE WEED ERRYDAY", log.visible);
     }, null, null, false),
@@ -129,5 +129,5 @@ var commands = [
     new Command("damn", function() {
         log("DAMN SON, WHERE'D YOU FIND THIS??", log.visible);
     }, null, null, false),
-
+*/
 ];
