@@ -12,14 +12,14 @@ var blackJackEnabled        = (typeof blackJackEnabled === "undefined")      ? f
 var RollTheDiceEnabled      = (typeof RollTheDiceEnabled === "undefined")    ? false : true;
 
 var meetupUrl               = (typeof meetupUrl=== "undefined")         ? ""    : meetupUrl;
-var SpecialGreeting         = "";
+var SpecialGreeting         = "The next official meetup will be Saturday, Aug 16th at 3:03PM EST AFTER the new plug.dj update. We'll have something special in store for you!";
 
 var trackAFKs               = (typeof trackAFKs === "undefined")? [] : trackAFKs;// format: array[0=>username, 1=>userID, 2=>time of last msg, 3=>message data/txt, 4=bool warned or not]
 var blackJackUsers          = [];// format: array[0=>userID, 1=> wager, 2=>user's hand array[card1, card2, ...], 3=>dealer's hand array[card1, card2, ...], 4=> deck array[0-51], 5=> active game bool false|true if game over, 6=> bool false|true if cards faceup, 7=>stand bool false|true=!stand called/forced]
-var upvotes                 = [];
-var afkNames                = [];
-var afkInsults              = [];
-var woots                   = [];
+var upvotes                 = ["upchode", "upgrope", "upspoke", "uptoke", "upbloke", "upboat", "upgoat", "uphope", "uppope"];
+var afkNames                = ["Discipliner", "Decimator", "Slayer", "Obliterator", "Enforcer"];
+var afkInsults              = ["wanker", "turtle", "knob", "toilet brush", "cheeky kunt", "hipster", "limp noodle", "princess", "fuckmuppet", "turd burgler", "doggyknobber", "fuckbin"];
+var woots                   = ["Was just about to get on the dancefloor!", "Let's dance alllll night long", "fuck yeah this is the shit!", "I thought you'd never ask ;)"];
 var blackJackPlayer         = [Date.now(), ""];// format: array[timestamp, userid];
 var blackJackPlayers        = [];
 
@@ -85,9 +85,49 @@ function stop(update) {
 }
 
 
+function meetupReminder() {
+    if((meetupUrl.length > 0) && ((Date.now() - lastMeetupMessageTime) > 600000)) {
+        chat("Make sure to " + upvotes[Math.round(Math.random() * (upvotes.length - 1))] + " the /r/edmp thread at " + meetupUrl + "!");
+        lastMeetupMessageTime = Date.now();
+    }
+}
+
+function dispatch(message, author) {
+    while(true) {
+        if(message.indexOf("<a") == -1) {
+            break;
+        }
+
+        var start = message.indexOf("<a");
+        var end = message.indexOf("a>");
+        var link = $(message.substr(start, end)).attr("href");
+
+        message = message.split(message.substr(start, end));
+        message = message[0] + link + message[1];
+    }
+    message = message.replace(/&nbsp;/g, '');
+
+    if(message.match(/(^!)(!?)/)) {
+        message = message.substr(message.indexOf("!"));
+
+        try {
+            var args = message.split(" ");
+            return commandDispatch(args , author);
+        } catch(exp) {
+            log("Error: " + exp.stack, log.info);
+            return false;
+        }
+    } else {
+        return false;
+    }
+}
 
 
-
+function commandDispatch(args, author) {
+    args[0] = args[0].substring(1);
+    log(author + " has dispatched: \'" + args[0] + "\'" + " with args: " + args, log.info);
+    return execCommand(author, args);
+}
 
 
 function isPlaying(username) {
@@ -292,7 +332,7 @@ function rollTheDice(author) {
         API.moderateMoveDJ(getId(author), getPosition(author) + 1 + 2);
     }
 }
-/*
+
 function eightball(author, args) {
     var outcomes = [
         "It is certain",
@@ -334,12 +374,12 @@ function checkSpecialEvent() {
     }
 }
 
-*/
+
 //
 // Hourly shit and general bot stuffs
 //
 function init() {
-    window.edmBot = window.setInterval(function(){
+    window.edmpBot = window.setInterval(function(){
         meetupReminder();
     }, 10);
 
@@ -348,7 +388,7 @@ function init() {
     cronFiveMinutes(); // 5-minute checks
 //    cronSpecialEvent(); // 1.5 minute checks
 
-    log("Loaded v" + version, log.visible);
+    log("Loaded EDMPbot v" + version, log.visible);
 }
 
 try {
