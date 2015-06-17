@@ -14,7 +14,7 @@ function lottery(author, args) {
         }
     }
 
-    if(new Date().getMinutes() >= 10) {
+    if(new Date().getMinutes() >= 5) {
         log("@" + author + ", the lottery occurs at the start of each hour for a five minute window. Type !lottery within 5 minutes after a new hour for a chance to win!", log.visible);
         return;
     } else if(lotteryEntries.indexOf(getId(author)) > -1)  {
@@ -47,7 +47,7 @@ function lotteryUpdate() {
                 return;
             }
 
-            log("@" + getUsername(winner)+ " has won the hourly lottery! The lottery occurs at the start of each hour for a ten minute window. Type !lottery within 10 minutes after a new hour for a chance to win!", log.visible);
+            log("@" + getUsername(winner)+ " has won the hourly lottery! The lottery occurs at the start of each hour for a five minute window. Type !lottery within 5 minutes after a new hour for a chance to win!", log.visible);
             API.moderateMoveDJ(winner, 2);
         } else {
             if (lotteryEnabled) {
