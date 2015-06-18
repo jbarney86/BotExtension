@@ -329,7 +329,7 @@ log("lost code in !blackjack", log.info);
                         deleteBlackJackGame(author);
                         API.moderateMoveDJ(getId(author), getPosition(author) + 1 - blackJackUsers[game][1]);
                     } else if((handDealer[0] == 10 || handDealer[0] == "J" || handDealer[0] == "Q" || handDealer[0] == "K") && handDealer[1] == "A") {
-                        log(output + "@" + author + " got beaten at !blackjack by @EDMBot", log.visible);
+                        log(output + "@" + author + " got beaten at !blackjack", log.visible);
                         API.moderateMoveDJ(getId(author), getPosition(author) + 1 + blackJackUsers[game][1]);
                         blackJackUsers[game][6] = true;// cards now face-up
                         deleteBlackJackGame(author);
