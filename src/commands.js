@@ -125,6 +125,10 @@ var commands = [
     new Command("dank", function() {
     log("Ayyy Lmao :alien:", log.visible);
     }, null, null, false),
+    
+    new Command("drugs", function() {
+    log("WHERE THE DRUGS AT?!?", log.visible);
+    }, null, null, false),
 
     new Command("damn", function() {
         log("DAMN SON, WHERE'D YOU FIND THIS??", log.visible);
